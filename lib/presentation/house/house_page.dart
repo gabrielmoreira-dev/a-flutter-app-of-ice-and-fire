@@ -34,7 +34,7 @@ class HousePage extends StatelessWidget {
               AsyncSnapshotResponseView<Success, Loading, Error>(
             snapshot: snapshot,
             onTryAgainTap: () => bloc.onTryAgainSink.add(null),
-            successWidgetBuilder: (context, success) => CardGridView(
+            successWidgetBuilder: (context, success) => GotGridView(
               itemList: success.houseList
                   .map(
                     (houseItem) => CardItemVM(

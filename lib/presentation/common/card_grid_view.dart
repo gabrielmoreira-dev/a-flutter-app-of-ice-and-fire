@@ -1,44 +1,69 @@
+import 'package:aflutterappoficeandfire/presentation/common/got_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class CardGridView extends StatelessWidget {
-  CardGridView({
+class GotGridView extends StatelessWidget {
+  GotGridView({
     @required this.itemList,
   }) : assert(itemList != null);
 
   final List<CardItemVM> itemList;
 
   @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.all(8),
-        child: GridView(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            childAspectRatio: 3 / 4,
-            crossAxisSpacing: 6,
-            mainAxisSpacing: 4,
-          ),
-          children: itemList
-              .map(
-                (item) => _CardItem(
-                  item: item,
-                ),
-              )
-              .toList(),
+  Widget build(BuildContext context) => GridView(
+        padding: EdgeInsets.all(16),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 3 / 4,
+          crossAxisSpacing: 16,
+          mainAxisSpacing: 16,
         ),
+        children: itemList
+            .map(
+              (item) => _GotGridTile(
+                item: item,
+              ),
+            )
+            .toList(),
       );
 }
 
-class _CardItem extends StatelessWidget {
-  _CardItem({
+class _GotGridTile extends StatelessWidget {
+  _GotGridTile({
     @required this.item,
   }) : assert(item != null);
 
   final CardItemVM item;
 
   @override
-  Widget build(BuildContext context) => Card(
-        child: Text(item.name),
+  Widget build(BuildContext context) => ClipRRect(
+        borderRadius: BorderRadius.circular(6),
+        child: Column(
+          children: [
+            item.image != null
+                ? Image.network(
+                    item.image,
+                    fit: BoxFit.cover,
+                  )
+                : Expanded(
+                    child: Container(
+                      color: GotColors.darkBlue,
+                      child: Center(
+                        child: Icon(
+                          Icons.image,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                  ),
+            GridTileBar(
+              backgroundColor: Colors.black87,
+              title: Center(
+                child: Text(item.name),
+              ),
+            ),
+          ],
+        ),
       );
 }
 
