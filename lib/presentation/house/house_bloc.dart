@@ -1,12 +1,13 @@
-import 'package:aflutterappoficeandfire/common/subscription_holder.dart';
-import 'package:aflutterappoficeandfire/presentation/house/house_models.dart';
 import 'package:rxdart/rxdart.dart';
+
+import '../../common/subscription_holder.dart';
+import 'house_models.dart';
 
 class HouseBloc with SubscriptionHolder {
   HouseBloc() {
     Rx.merge(
       List<Stream<void>>.of([
-        Stream.empty(),
+        Stream.value(null),
         _onTryAgainSubject,
       ]),
     )
@@ -40,6 +41,12 @@ class HouseBloc with SubscriptionHolder {
           ),
           HouseVM(
             name: 'House 3',
+          ),
+          HouseVM(
+            name: 'House 4',
+          ),
+          HouseVM(
+            name: 'House 5',
           ),
         ],
       );
