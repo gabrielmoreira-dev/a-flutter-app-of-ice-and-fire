@@ -1,3 +1,4 @@
+import 'package:aflutterappoficeandfire/presentation/house/house_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -8,8 +9,8 @@ void main() {
 class AnAppOfIceAndFire extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
-    title: 'An App of Ice and Fire',
-    debugShowCheckedModeBanner: false,
-    home: Placeholder(),
-  );
+        title: 'An App of Ice and Fire',
+        debugShowCheckedModeBanner: false,
+        home: HousePage.create(),
+      );
 }
