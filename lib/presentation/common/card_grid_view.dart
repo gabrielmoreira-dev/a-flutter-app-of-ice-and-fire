@@ -47,11 +47,11 @@ class _GotGridTile extends StatelessWidget {
                   )
                 : Expanded(
                     child: Container(
-                      color: GotColors.darkBlue,
+                      color: GotColors.lightBlue,
                       child: Center(
                         child: Icon(
                           Icons.image,
-                          color: Colors.grey,
+                          color: Colors.white,
                         ),
                       ),
                     ),

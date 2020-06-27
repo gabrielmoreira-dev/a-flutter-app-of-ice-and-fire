@@ -31,7 +31,7 @@ class AnAppOfIceAndFire extends StatelessWidget {
           appBarTheme: AppBarTheme(
             color: GotColors.darkBlue,
           ),
-          scaffoldBackgroundColor: GotColors.lightBlue,
+          scaffoldBackgroundColor: GotColors.darkBlue,
         ),
         title: 'An App of Ice and Fire',
         debugShowCheckedModeBanner: false,
