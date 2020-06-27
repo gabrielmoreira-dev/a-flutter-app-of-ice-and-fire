@@ -31,7 +31,10 @@ class HousePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: Text('An App of Ice And Fire'),
+          title: Text(
+            'An App of Ice And Fire',
+            style: TextStyle(fontSize: 16),
+          ),
         ),
         body: StreamBuilder<HouseState>(
           stream: bloc.onNewState,

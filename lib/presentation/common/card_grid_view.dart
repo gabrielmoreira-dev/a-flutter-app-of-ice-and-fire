@@ -1,5 +1,7 @@
-import 'package:aflutterappoficeandfire/presentation/common/got_colors.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 
 class GotGridView extends StatelessWidget {
@@ -15,8 +17,8 @@ class GotGridView extends StatelessWidget {
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 3 / 4,
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
         ),
         children: itemList
             .map(
@@ -36,33 +38,52 @@ class _GotGridTile extends StatelessWidget {
   final CardItemVM item;
 
   @override
-  Widget build(BuildContext context) => ClipRRect(
-        borderRadius: BorderRadius.circular(6),
-        child: Column(
-          children: [
-            item.image != null
-                ? Image.network(
-                    item.image,
-                    fit: BoxFit.cover,
-                  )
-                : Expanded(
-                    child: Container(
-                      color: GotColors.lightBlue,
-                      child: Center(
-                        child: Icon(
-                          Icons.image,
-                          color: Colors.white,
-                        ),
-                      ),
+  Widget build(BuildContext context) => Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6),
+          border: Border.all(
+            color: Colors.white,
+            width: 0.5,
+          ),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(6),
+          child: Column(
+            children: [
+              Expanded(
+                child: Container(
+                  color: Colors.black26,
+                  child: Center(
+                    child: item.image != null
+                        ? CachedNetworkImage(
+                            imageUrl: item.image,
+                            width: 100,
+                            height: 100,
+                            placeholder: (context, _) =>
+                                CircularProgressIndicator(),
+                            errorWidget: (context, _, __) => ImageError(),
+                          )
+                        : ImageError(),
+                  ),
+                ),
+              ),
+              Container(
+                width: double.infinity,
+                height: 40,
+                color: Colors.black87,
+                child: Center(
+                  child: Text(
+                    item.name,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: Colors.white,
                     ),
                   ),
-            GridTileBar(
-              backgroundColor: Colors.black87,
-              title: Center(
-                child: Text(item.name),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       );
 }
@@ -75,4 +96,12 @@ class CardItemVM {
 
   final String name;
   final String image;
+}
+
+class ImageError extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) => Icon(
+        Icons.image,
+        color: Colors.white,
+      );
 }
