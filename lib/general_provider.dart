@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:domain/use_case/get_house_list_uc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
@@ -37,7 +38,13 @@ class GeneralProvider extends StatelessWidget {
         ),
       ];
 
-  List<SingleChildWidget> _buildUCProviders() => [];
+  List<SingleChildWidget> _buildUCProviders() => [
+        ProxyProvider<HouseRepository, GetHouseListUC>(
+          update: (context, repository, _) => GetHouseListUC(
+            repository: repository,
+          ),
+        ),
+      ];
 
   @override
   Widget build(BuildContext context) => MultiProvider(
@@ -48,7 +55,7 @@ class GeneralProvider extends StatelessWidget {
           ..._buildRDSProviders(),
           ..._buildCDSProviders(),
           ..._buildRepositoryProviders(),
-//          ..._buildUCProviders(),
+          ..._buildUCProviders(),
         ],
         child: builder(context),
       );

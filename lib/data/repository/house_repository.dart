@@ -19,10 +19,12 @@ class HouseRepository extends HouseDataRepository {
   final HouseRDS houseRDS;
 
   @override
-  Future<List<House>> getHouseList() => houseRDS
-      .getHouseList()
-      .then(
-        (houseList) => houseCDS
+  Future<List<House>> getHouseList() =>
+      houseRDS.getHouseList().then((houseList) {
+        houseList.forEach((element) {
+          print(element.name);
+        });
+        return houseCDS
             .upsertHouseList(
               houseList
                   .map(
@@ -36,9 +38,8 @@ class HouseRepository extends HouseDataRepository {
                     (houseItem) => houseItem.toDM(),
                   )
                   .toList(),
-            ),
-      )
-      .catchError(
+            );
+      }).catchError(
         () => houseCDS.getHouseList().then(
               (houseList) => houseList
                   .map(

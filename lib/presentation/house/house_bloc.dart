@@ -1,10 +1,15 @@
+import 'package:domain/use_case/get_house_list_uc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../common/subscription_holder.dart';
+import 'house_mapper.dart';
 import 'house_models.dart';
 
 class HouseBloc with SubscriptionHolder {
-  HouseBloc() {
+  HouseBloc({
+    @required this.getHouseListUC,
+  }) : assert(getHouseListUC != null) {
     Rx.merge(
       List<Stream<void>>.of([
         Stream.value(null),
@@ -19,6 +24,8 @@ class HouseBloc with SubscriptionHolder {
         );
   }
 
+  final GetHouseListUC getHouseListUC;
+
   final _onNewStateSubject = BehaviorSubject<HouseState>.seeded(Loading());
 
   Stream<HouseState> get onNewState => _onNewStateSubject.stream;
@@ -31,26 +38,16 @@ class HouseBloc with SubscriptionHolder {
     yield Loading();
 
     try {
+      final houseList = await getHouseListUC.getFuture();
+
       yield Success(
-        houseList: [
-          HouseVM(
-            name: 'House 1',
-          ),
-          HouseVM(
-            name: 'House 2',
-          ),
-          HouseVM(
-            name: 'House 3',
-          ),
-          HouseVM(
-            name: 'House 4',
-          ),
-          HouseVM(
-            name: 'House 5',
-          ),
-        ],
+        houseList: houseList
+            .map(
+              (houseItem) => houseItem.toVM(),
+            )
+            .toList(),
       );
-    } catch (_) {
+    } catch (e) {
       yield Error();
     }
   }

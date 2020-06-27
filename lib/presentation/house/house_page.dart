@@ -1,3 +1,4 @@
+import 'package:domain/use_case/get_house_list_uc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -14,8 +15,12 @@ class HousePage extends StatelessWidget {
 
   final HouseBloc bloc;
 
-  static Widget create() => Provider<HouseBloc>(
-        create: (_) => HouseBloc(),
+  static Widget create() => ProxyProvider<GetHouseListUC, HouseBloc>(
+        update: (context, getHouseListUC, bloc) =>
+            bloc ??
+            HouseBloc(
+              getHouseListUC: getHouseListUC,
+            ),
         child: Consumer<HouseBloc>(
           builder: (context, bloc, _) => HousePage(
             bloc: bloc,
