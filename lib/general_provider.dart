@@ -5,6 +5,7 @@ import 'package:provider/single_child_widget.dart';
 
 import 'data/cache/data_source/house_cds.dart';
 import 'data/remote/data_source/house_rds.dart';
+import 'data/repository/house_repository.dart';
 
 class GeneralProvider extends StatelessWidget {
   GeneralProvider({
@@ -27,7 +28,14 @@ class GeneralProvider extends StatelessWidget {
         ),
       ];
 
-  List<SingleChildWidget> _buildRepositoryProviders() => [];
+  List<SingleChildWidget> _buildRepositoryProviders() => [
+        ProxyProvider2<HouseCDS, HouseRDS, HouseRepository>(
+          update: (context, houseCDS, houseRDS, _) => HouseRepository(
+            houseCDS: houseCDS,
+            houseRDS: houseRDS,
+          ),
+        ),
+      ];
 
   List<SingleChildWidget> _buildUCProviders() => [];
 
@@ -39,8 +47,8 @@ class GeneralProvider extends StatelessWidget {
           ),
           ..._buildRDSProviders(),
           ..._buildCDSProviders(),
-          /*..._buildRepositoryProviders(),
-          ..._buildUCProviders(),*/
+          ..._buildRepositoryProviders(),
+//          ..._buildUCProviders(),
         ],
         child: builder(context),
       );
