@@ -1,13 +1,21 @@
-import 'package:aflutterappoficeandfire/general_provider.dart';
-import 'package:aflutterappoficeandfire/presentation/common/got_colors.dart';
-import 'package:aflutterappoficeandfire/presentation/house/house_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
+
+import 'data/cache/model/house_cm.dart';
+import 'general_provider.dart';
+import 'presentation/common/got_colors.dart';
+import 'presentation/house/house_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  final appDocDir = await getApplicationDocumentsDirectory();
+  Hive
+    ..init(appDocDir.path)
+    ..registerAdapter(HouseCMAdapter());
 
   runApp(
     GeneralProvider(

@@ -1,6 +1,8 @@
-import 'package:aflutterappoficeandfire/data/remote/model/house_rm.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
+
+import '../infrastructure/url_builder.dart';
+import '../model/house_rm.dart';
 
 class HouseRDS {
   HouseRDS({
@@ -9,11 +11,14 @@ class HouseRDS {
 
   final Dio dio;
 
-  Future<List<HouseRM>> getHouseList() =>
-      dio.get('https://api.got.show/api/show/houses').then(
-            (response) => response.data
-                .map((houseData) => HouseRM.fromJson(houseData))
-                .toList()
-                .cast<HouseRM>(),
-          );
+  Future<List<HouseRM>> getHouseList() => dio
+      .get(
+        UrlBuilder.houseList,
+      )
+      .then(
+        (response) => response.data
+            .map((houseData) => HouseRM.fromJson(houseData))
+            .toList()
+            .cast<HouseRM>(),
+      );
 }
