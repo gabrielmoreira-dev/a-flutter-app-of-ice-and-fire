@@ -8,7 +8,7 @@ class HouseCDS {
   Future<List<HouseCM>> getHouseList() async {
     try {
       final box = await Hive.openBox(_houseList);
-      return box.getAt(0).cast<HouseCM>();
+      return box.get(0).cast<HouseCM>();
     } catch (_) {
       return <HouseCM>[];
     }
@@ -16,6 +16,6 @@ class HouseCDS {
 
   Future<void> upsertHouseList(List<HouseCM> houseList) async {
     final box = await Hive.openBox(_houseList);
-    box.putAt(0, houseList);
+    box.put(0, houseList);
   }
 }
