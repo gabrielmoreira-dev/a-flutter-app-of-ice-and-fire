@@ -1,3 +1,4 @@
+import 'package:aflutterappoficeandfire/general_provider.dart';
 import 'package:aflutterappoficeandfire/presentation/common/got_colors.dart';
 import 'package:aflutterappoficeandfire/presentation/house/house_page.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,12 @@ import 'package:flutter/widgets.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  runApp(AnAppOfIceAndFire());
+
+  runApp(
+    GeneralProvider(
+      builder: (context) => AnAppOfIceAndFire(),
+    ),
+  );
 }
 
 class AnAppOfIceAndFire extends StatelessWidget {
