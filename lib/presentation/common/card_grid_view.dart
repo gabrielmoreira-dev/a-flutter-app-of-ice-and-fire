@@ -7,9 +7,12 @@ import 'package:flutter/widgets.dart';
 class GotGridView extends StatelessWidget {
   GotGridView({
     @required this.itemList,
-  }) : assert(itemList != null);
+    @required this.onTap,
+  })  : assert(itemList != null),
+        assert(onTap != null);
 
   final List<CardItemVM> itemList;
+  final Function onTap;
 
   @override
   Widget build(BuildContext context) => GridView(
@@ -24,6 +27,7 @@ class GotGridView extends StatelessWidget {
             .map(
               (item) => _GotGridTile(
                 item: item,
+                onTap: onTap,
               ),
             )
             .toList(),
@@ -33,9 +37,12 @@ class GotGridView extends StatelessWidget {
 class _GotGridTile extends StatelessWidget {
   _GotGridTile({
     @required this.item,
-  }) : assert(item != null);
+    @required this.onTap,
+  })  : assert(item != null),
+        assert(onTap != null);
 
   final CardItemVM item;
+  final Function onTap;
 
   @override
   Widget build(BuildContext context) => Container(
@@ -46,45 +53,48 @@ class _GotGridTile extends StatelessWidget {
             width: 0.5,
           ),
         ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(6),
-          child: Column(
-            children: [
-              Expanded(
-                child: Container(
-                  color: Colors.black26,
-                  child: Center(
-                    child: item.image != null
-                        ? CachedNetworkImage(
-                            imageUrl: item.image,
-                            width: 100,
-                            height: 100,
-                            placeholder: (context, _) =>
-                                CircularProgressIndicator(),
-                            errorWidget: (context, _, __) => ImageError(),
-                          )
-                        : ImageError(),
-                  ),
-                ),
-              ),
-              Container(
-                width: double.infinity,
-                height: 40,
-                color: Colors.black87,
-                child: Center(
-                  child: Text(
-                    item.name,
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
-                    overflow: TextOverflow.fade,
-                    style: TextStyle(
-                      fontSize: 10,
-                      color: Colors.white,
+        child: GestureDetector(
+          onTap: () => onTap(item.name),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(6),
+            child: Column(
+              children: [
+                Expanded(
+                  child: Container(
+                    color: Colors.black26,
+                    child: Center(
+                      child: item.image != null
+                          ? CachedNetworkImage(
+                              imageUrl: item.image,
+                              width: 100,
+                              height: 100,
+                              placeholder: (context, _) =>
+                                  CircularProgressIndicator(),
+                              errorWidget: (context, _, __) => ImageError(),
+                            )
+                          : ImageError(),
                     ),
                   ),
                 ),
-              ),
-            ],
+                Container(
+                  width: double.infinity,
+                  height: 40,
+                  color: Colors.black87,
+                  child: Center(
+                    child: Text(
+                      item.name,
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      overflow: TextOverflow.fade,
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       );

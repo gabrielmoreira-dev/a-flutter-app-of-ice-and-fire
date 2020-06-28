@@ -52,6 +52,7 @@ class HousePage extends StatelessWidget {
                     ),
                   )
                   .toList(),
+              onTap: (name) {},
             ),
           ),
         ),
