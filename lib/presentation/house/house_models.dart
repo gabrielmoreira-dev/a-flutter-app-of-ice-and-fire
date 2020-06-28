@@ -23,3 +23,9 @@ class HouseVM {
   final String name;
   final String image;
 }
+
+abstract class HouseEvent {}
+
+class OnTryAgainEvent extends HouseEvent {}
+
+class OnInitEvent extends HouseEvent {}

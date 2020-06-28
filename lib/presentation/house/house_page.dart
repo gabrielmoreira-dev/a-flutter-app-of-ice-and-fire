@@ -1,6 +1,7 @@
 import 'package:domain/use_case/get_house_list_uc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../common/async_snapshot_response_view.dart';
@@ -15,12 +16,10 @@ class HousePage extends StatelessWidget {
 
   final HouseBloc bloc;
 
-  static Widget create() => ProxyProvider<GetHouseListUC, HouseBloc>(
-        update: (context, getHouseListUC, bloc) =>
-            bloc ??
-            HouseBloc(
-              getHouseListUC: getHouseListUC,
-            ),
+  static Widget create() => BlocProvider(
+        create: (context) => HouseBloc(
+          getHouseListUC: Provider.of<GetHouseListUC>(context, listen: false),
+        ),
         child: Consumer<HouseBloc>(
           builder: (context, bloc, _) => HousePage(
             bloc: bloc,
@@ -36,12 +35,14 @@ class HousePage extends StatelessWidget {
             style: TextStyle(fontSize: 16),
           ),
         ),
-        body: StreamBuilder<HouseState>(
-          stream: bloc.onNewState,
-          builder: (context, snapshot) =>
-              AsyncSnapshotResponseView<Success, Loading, Error>(
-            snapshot: snapshot,
-            onTryAgainTap: () => bloc.onTryAgainSink.add(null),
+        body: BlocBuilder<HouseBloc, HouseState>(
+          bloc: bloc,
+          builder: (context, state) =>
+              ResponseView<HouseState, Success, Loading, Error>(
+            state: state,
+            onTryAgainTap: () => bloc.add(
+              OnTryAgainEvent(),
+            ),
             successWidgetBuilder: (context, success) => GotGridView(
               itemList: success.houseList
                   .map(

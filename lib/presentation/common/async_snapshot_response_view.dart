@@ -1,33 +1,33 @@
-import 'package:aflutterappoficeandfire/presentation/common/error_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class AsyncSnapshotResponseView<Success, Loading, Error>
-    extends StatelessWidget {
-  AsyncSnapshotResponseView({
-    @required this.snapshot,
+import '../common/error_view.dart';
+
+class ResponseView<State, Success extends State, Loading extends State,
+    Error extends State> extends StatelessWidget {
+  ResponseView({
+    @required this.state,
     @required this.successWidgetBuilder,
     this.onTryAgainTap,
-  })  : assert(snapshot != null),
+  })  : assert(state != null),
         assert(successWidgetBuilder != null);
 
-  final AsyncSnapshot snapshot;
+  final State state;
   final Function(BuildContext context, Success success) successWidgetBuilder;
   final GestureTapCallback onTryAgainTap;
 
   @override
-  Widget build(BuildContext context) =>
-      snapshot.data is Loading || snapshot.data == null
-          ? Center(
-              child: CircularProgressIndicator(),
+  Widget build(BuildContext context) => state is Loading || state == null
+      ? Center(
+          child: CircularProgressIndicator(),
+        )
+      : state is Error
+          ? ErrorView(
+              onTryAgainTap: onTryAgainTap,
             )
-          : snapshot.data is Error
-              ? ErrorView(
-                  onTryAgainTap: onTryAgainTap,
-                )
-              : snapshot.data is Success
-                  ? successWidgetBuilder(context, snapshot.data)
-                  : throw UnknownStateTypeException();
+          : state is Success
+              ? successWidgetBuilder(context, state)
+              : throw UnknownStateTypeException();
 }
 
 class UnknownStateTypeException implements Exception {}
