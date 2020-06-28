@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import '../cache/data_source/house_cds.dart';
 import '../mapper/cache_to_domain.dart';
 import '../mapper/remote_to_cache.dart';
-import '../mapper/remote_to_domain.dart';
 import '../remote/data_source/house_rds.dart';
 
 class HouseRepository extends HouseDataRepository {
@@ -22,29 +21,16 @@ class HouseRepository extends HouseDataRepository {
   Future<List<House>> getHouseList() => houseRDS
       .getHouseList()
       .then(
-        (houseList) => houseCDS
-            .upsertHouseList(
-              houseList
-                  .map(
-                    (houseItem) => houseItem.toCM(),
-                  )
-                  .toList(),
-            )
-            .then(
-              (_) => houseList
-                  .map(
-                    (houseItem) => houseItem.toDM(),
-                  )
-                  .toList(),
+        (houseList) => houseList.toCM(),
+      )
+      .then(
+        (houseListCM) => houseCDS.upsertHouseList(houseListCM).then(
+              (_) => houseListCM.toDM(),
             ),
       )
       .catchError(
         (_) => houseCDS.getHouseList().then(
-              (houseList) => houseList
-                  .map(
-                    (houseItem) => houseItem.toDM(),
-                  )
-                  .toList(),
+              (houseListCM) => houseListCM.toDM(),
             ),
       );
 }

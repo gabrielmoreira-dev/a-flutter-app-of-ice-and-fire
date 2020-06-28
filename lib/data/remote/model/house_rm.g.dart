@@ -9,11 +9,11 @@ part of 'house_rm.dart';
 HouseRM _$HouseRMFromJson(Map<String, dynamic> json) {
   return HouseRM(
     name: json['name'] as String,
-    image: json['image'] as String,
+    logoURL: json['logoURL'] as String,
   );
 }
 
 Map<String, dynamic> _$HouseRMToJson(HouseRM instance) => <String, dynamic>{
       'name': instance.name,
-      'image': instance.image,
+      'logoURL': instance.logoURL,
     };

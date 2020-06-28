@@ -7,13 +7,13 @@ part 'house_rm.g.dart';
 class HouseRM {
   HouseRM({
     @required this.name,
-    this.image,
+    this.logoURL,
   }) : assert(name != null);
 
   @JsonKey()
   final String name;
   @JsonKey()
-  final String image;
+  final String logoURL;
 
   Map<String, dynamic> toJson() => _$HouseRMToJson(this);
   static const fromJson = _$HouseRMFromJson;

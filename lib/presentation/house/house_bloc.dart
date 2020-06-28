@@ -40,7 +40,7 @@ class HouseBloc extends Bloc<HouseEvent, HouseState> {
                 (a, b) => a.name.compareTo(b.name),
               ),
       );
-    } catch (e) {
+    } catch (_) {
       yield Error();
     }
   }
