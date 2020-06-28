@@ -23,6 +23,8 @@ class HouseBloc extends Bloc<HouseEvent, HouseState> {
 
   @override
   Stream<HouseState> mapEventToState(HouseEvent event) async* {
+    /// This method fetches the House data and sort it alphabetically.
+
     yield Loading();
 
     try {
@@ -33,7 +35,10 @@ class HouseBloc extends Bloc<HouseEvent, HouseState> {
             .map(
               (houseItem) => houseItem.toVM(),
             )
-            .toList(),
+            .toList()
+              ..sort(
+                (a, b) => a.name.compareTo(b.name),
+              ),
       );
     } catch (e) {
       yield Error();

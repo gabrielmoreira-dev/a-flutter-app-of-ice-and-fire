@@ -75,6 +75,8 @@ class _GotGridTile extends StatelessWidget {
                   child: Text(
                     item.name,
                     textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.fade,
                     style: TextStyle(
                       fontSize: 10,
                       color: Colors.white,
