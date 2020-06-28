@@ -11,8 +11,6 @@ class HouseRDS {
 
   final Dio dio;
 
-  /// Returns a list of [HouseRM] taking care to select only the data containing
-  /// the image - data without an image is not interesting to the app.
   Future<List<HouseRM>> getHouseList() => dio
       .get(
         UrlBuilder.houseList,

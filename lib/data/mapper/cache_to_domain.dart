@@ -8,3 +8,9 @@ extension HouseCMMapper on HouseCM {
         image: image,
       );
 }
+
+extension HouseListCMMapper on List<HouseCM> {
+  List<House> toDM() => map(
+        (houseItem) => houseItem.toDM(),
+      ).toList();
+}
