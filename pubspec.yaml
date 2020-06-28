@@ -43,9 +43,7 @@ dependencies:
 dev_dependencies:
   json_serializable: ^3.3.0
   build_runner: ^1.8.1
-
-  # The following generates cm .g files
-  # hive_generator: ^0.7.0+2
+  hive_generator: ^0.7.0+2
 
 # dependency_overrides:
   # dartx: ^0.3.0

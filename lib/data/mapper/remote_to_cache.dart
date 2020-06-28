@@ -4,6 +4,6 @@ import '../remote/model/house_rm.dart';
 extension HouseRMMapperToCM on HouseRM {
   HouseCM toCM() => HouseCM(
         name: name,
-        image: image,
+        image: logoURL,
       );
 }
