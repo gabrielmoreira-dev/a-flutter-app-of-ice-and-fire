@@ -16,7 +16,7 @@ class GotGridView extends StatelessWidget {
         padding: EdgeInsets.all(16),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          childAspectRatio: 3 / 4,
+          childAspectRatio: 5 / 6,
           crossAxisSpacing: 20,
           mainAxisSpacing: 20,
         ),
