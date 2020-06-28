@@ -7,11 +7,11 @@ part 'house_cm.g.dart';
 class HouseCM {
   HouseCM({
     @required this.name,
-    this.image,
+    this.logoURL,
   }) : assert(name != null);
 
   @HiveField(0)
   final String name;
   @HiveField(1)
-  final String image;
+  final String logoURL;
 }

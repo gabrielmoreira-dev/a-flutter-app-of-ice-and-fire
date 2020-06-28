@@ -4,7 +4,7 @@ import '../remote/model/house_rm.dart';
 extension HouseRMMapper on HouseRM {
   HouseCM toCM() => HouseCM(
         name: name,
-        image: logoURL,
+        logoURL: logoURL,
       );
 }
 
@@ -13,7 +13,7 @@ extension HouseListRMMapper on List<HouseRM> {
         (houseItem) => houseItem.toCM(),
       )
           .where(
-            (houseItem) => houseItem.image != null,
+            (houseItem) => houseItem.logoURL != null,
           )
           .toList();
 }

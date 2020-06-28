@@ -18,7 +18,7 @@ class HouseCMAdapter extends TypeAdapter<HouseCM> {
     };
     return HouseCM(
       name: fields[0] as String,
-      image: fields[1] as String,
+      logoURL: fields[1] as String,
     );
   }
 
@@ -29,6 +29,6 @@ class HouseCMAdapter extends TypeAdapter<HouseCM> {
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
-      ..write(obj.image);
+      ..write(obj.logoURL);
   }
 }

@@ -30,7 +30,7 @@ class HouseRepository extends HouseDataRepository {
       )
       .catchError(
         (_) => houseCDS.getHouseList().then(
-              (houseListCM) => houseListCM.toDM,
+              (houseListCM) => houseListCM.toDM(),
             ),
       );
 }

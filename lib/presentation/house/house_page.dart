@@ -48,7 +48,7 @@ class HousePage extends StatelessWidget {
                   .map(
                     (houseItem) => CardItemVM(
                       name: houseItem.name,
-                      image: houseItem.image,
+                      image: houseItem.logoURL,
                     ),
                   )
                   .toList(),
