@@ -8,6 +8,7 @@ import 'data/cache/data_source/character_cds.dart';
 import 'data/cache/data_source/house_cds.dart';
 import 'data/remote/data_source/character_rds.dart';
 import 'data/remote/data_source/house_rds.dart';
+import 'data/repository/character_repository.dart';
 import 'data/repository/house_repository.dart';
 
 class GeneralProvider extends StatelessWidget {
@@ -44,6 +45,13 @@ class GeneralProvider extends StatelessWidget {
           update: (context, houseCDS, houseRDS, _) => HouseRepository(
             houseCDS: houseCDS,
             houseRDS: houseRDS,
+          ),
+        ),
+        ProxyProvider2<CharacterCDS, CharacterRDS, CharacterRepository>(
+          update: (context, characterCDS, characterRDS, _) =>
+              CharacterRepository(
+            characterCDS: characterCDS,
+            characterRDS: characterRDS,
           ),
         ),
       ];

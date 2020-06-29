@@ -1,5 +1,7 @@
+import 'package:domain/model/character.dart';
 import 'package:domain/model/house.dart';
 
+import '../cache/model/character_cm.dart';
 import '../cache/model/house_cm.dart';
 
 extension HouseCMMapper on HouseCM {
@@ -13,4 +15,17 @@ extension HouseListCMMapper on List<HouseCM> {
   List<House> toDM() => map(
         (houseItem) => houseItem.toDM(),
       ).toList();
+}
+
+extension CharacterCMMapper on CharacterCM {
+  Character toDM() => Character(
+        name: name,
+        image: image,
+      );
+}
+
+extension CharacterListCMMapper on List<CharacterCM> {
+  List<Character> toDM() => map(
+        (characterItem) => characterItem.toDM(),
+      );
 }
