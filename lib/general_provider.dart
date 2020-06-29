@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:domain/use_case/get_character_list_uc.dart';
 import 'package:domain/use_case/get_house_list_uc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -59,6 +60,11 @@ class GeneralProvider extends StatelessWidget {
   List<SingleChildWidget> _buildUCProviders() => [
         ProxyProvider<HouseRepository, GetHouseListUC>(
           update: (context, repository, _) => GetHouseListUC(
+            repository: repository,
+          ),
+        ),
+        ProxyProvider<CharacterRepository, GetCharacterListUC>(
+          update: (context, repository, _) => GetCharacterListUC(
             repository: repository,
           ),
         ),
