@@ -16,7 +16,9 @@ class HouseRDS {
         UrlBuilder.houseList(),
       )
       .then(
-        (response) =>
-            response.data.map(HouseRM.fromJson).toList().cast<HouseRM>(),
+        (response) => response.data
+            .map((houseItem) => HouseRM.fromJson(houseItem))
+            .toList()
+            .cast<HouseRM>(),
       );
 }

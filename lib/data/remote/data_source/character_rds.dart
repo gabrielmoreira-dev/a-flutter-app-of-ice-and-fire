@@ -17,7 +17,7 @@ class CharacterRDS {
       )
       .then(
         (response) => response.data
-            .map(CharacterRM.fromJson)
+            .map((characterItem) => CharacterRM.fromJson(characterItem))
             .toList()
             .cast<CharacterRM>(),
       );

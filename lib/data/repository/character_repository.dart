@@ -30,7 +30,7 @@ class CharacterRepository extends CharacterDataRepository {
                 ),
       )
       .catchError(
-        (_) => characterCDS.getCharacterList(houseName).then(
+        (e) => characterCDS.getCharacterList(houseName).then(
               (characterListCM) => characterListCM.toDM(),
             ),
       );

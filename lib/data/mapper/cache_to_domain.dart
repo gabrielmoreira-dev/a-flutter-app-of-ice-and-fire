@@ -27,5 +27,5 @@ extension CharacterCMMapper on CharacterCM {
 extension CharacterListCMMapper on List<CharacterCM> {
   List<Character> toDM() => map(
         (characterItem) => characterItem.toDM(),
-      );
+      ).toList();
 }

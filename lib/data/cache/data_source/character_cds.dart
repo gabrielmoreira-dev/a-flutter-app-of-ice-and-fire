@@ -6,12 +6,8 @@ class CharacterCDS {
   static const _characterList = 'characterList';
 
   Future<List<CharacterCM>> getCharacterList(String houseName) async {
-    try {
-      final box = await Hive.openBox(_characterList);
-      return box.get(houseName).cast<CharacterCM>();
-    } catch (_) {
-      return <CharacterCM>[];
-    }
+    final box = await Hive.openBox(_characterList);
+    return box.get(houseName).cast<CharacterCM>();
   }
 
   Future<void> upsertCharacterList(
