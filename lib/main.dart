@@ -1,4 +1,3 @@
-import 'package:aflutterappoficeandfire/presentation/character/list/character_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -9,6 +8,7 @@ import 'data/cache/model/character_cm.dart';
 import 'data/cache/model/house_cm.dart';
 import 'general_provider.dart';
 import 'presentation/common/got_colors.dart';
+import 'presentation/house/house_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,6 +38,6 @@ class AnAppOfIceAndFire extends StatelessWidget {
         ),
         title: 'An App of Ice and Fire',
         debugShowCheckedModeBanner: false,
-        home: CharacterPage.create(),
+        home: HousePage.create(),
       );
 }

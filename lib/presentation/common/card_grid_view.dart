@@ -8,18 +8,20 @@ class GotGridView extends StatelessWidget {
   GotGridView({
     @required this.itemList,
     @required this.onTap,
+    this.expand = true,
   })  : assert(itemList != null),
         assert(onTap != null);
 
   final List<CardItemVM> itemList;
   final Function onTap;
+  final bool expand;
 
   @override
   Widget build(BuildContext context) => GridView(
         padding: EdgeInsets.all(16),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          childAspectRatio: 5 / 6,
+          childAspectRatio: 3 / 4,
           crossAxisSpacing: 20,
           mainAxisSpacing: 20,
         ),
@@ -28,6 +30,7 @@ class GotGridView extends StatelessWidget {
               (item) => _GotGridTile(
                 item: item,
                 onTap: onTap,
+                expand: expand,
               ),
             )
             .toList(),
@@ -38,11 +41,13 @@ class _GotGridTile extends StatelessWidget {
   _GotGridTile({
     @required this.item,
     @required this.onTap,
+    this.expand = true,
   })  : assert(item != null),
         assert(onTap != null);
 
   final CardItemVM item;
   final Function onTap;
+  final bool expand;
 
   @override
   Widget build(BuildContext context) => Container(
@@ -63,16 +68,17 @@ class _GotGridTile extends StatelessWidget {
                   child: Container(
                     color: Colors.black26,
                     child: Center(
-                      child: item.image != null
-                          ? CachedNetworkImage(
-                              imageUrl: item.image,
-                              width: 100,
-                              height: 100,
-                              placeholder: (context, _) =>
-                                  CircularProgressIndicator(),
-                              errorWidget: (context, _, __) => ImageError(),
-                            )
-                          : ImageError(),
+                      child: CachedNetworkImage(
+                        imageUrl: item.image,
+                        width: expand ? double.infinity : 100,
+                        height: expand ? double.infinity : 100,
+                        fit: expand ? BoxFit.cover : BoxFit.contain,
+                        alignment:
+                            expand ? Alignment.topCenter : Alignment.center,
+                        placeholder: (context, _) =>
+                            CircularProgressIndicator(),
+                        errorWidget: (context, _, __) => ImageError(),
+                      ),
                     ),
                   ),
                 ),
@@ -103,8 +109,9 @@ class _GotGridTile extends StatelessWidget {
 class CardItemVM {
   CardItemVM({
     @required this.name,
-    this.image,
-  }) : assert(name != null);
+    @required this.image,
+  })  : assert(name != null),
+        assert(image != null);
 
   final String name;
   final String image;
