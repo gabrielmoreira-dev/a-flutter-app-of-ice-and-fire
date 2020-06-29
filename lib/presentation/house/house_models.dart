@@ -14,6 +14,12 @@ class Loading extends HouseState {}
 
 class Error extends HouseState {}
 
+abstract class HouseEvent {}
+
+class OnInitEvent extends HouseEvent {}
+
+class OnTryAgainEvent extends HouseEvent {}
+
 class HouseVM {
   HouseVM({
     @required this.name,
@@ -24,9 +30,3 @@ class HouseVM {
   final String name;
   final String logoURL;
 }
-
-abstract class HouseEvent {}
-
-class OnTryAgainEvent extends HouseEvent {}
-
-class OnInitEvent extends HouseEvent {}
