@@ -13,12 +13,10 @@ class HouseRDS {
 
   Future<List<HouseRM>> getHouseList() => dio
       .get(
-        UrlBuilder.houseList,
+        UrlBuilder.houseList(),
       )
       .then(
-        (response) => response.data
-            .map((houseData) => HouseRM.fromJson(houseData))
-            .toList()
-            .cast<HouseRM>(),
+        (response) =>
+            response.data.map(HouseRM.fromJson).toList().cast<HouseRM>(),
       );
 }

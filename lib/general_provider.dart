@@ -1,3 +1,4 @@
+import 'package:aflutterappoficeandfire/data/remote/data_source/character_rds.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/use_case/get_house_list_uc.dart';
 import 'package:flutter/widgets.dart';
@@ -18,6 +19,11 @@ class GeneralProvider extends StatelessWidget {
   List<SingleChildWidget> _buildRDSProviders() => [
         ProxyProvider<Dio, HouseRDS>(
           update: (context, dio, _) => HouseRDS(
+            dio: dio,
+          ),
+        ),
+        ProxyProvider<Dio, CharacterRDS>(
+          update: (context, dio, _) => CharacterRDS(
             dio: dio,
           ),
         ),
