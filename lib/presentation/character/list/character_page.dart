@@ -17,11 +17,11 @@ class CharacterPage extends StatelessWidget {
 
   final CharacterBloc bloc;
 
-  static Widget create() => BlocProvider(
+  static Widget create(String houseName) => BlocProvider(
         create: (context) => CharacterBloc(
           getCharacterListUC:
               Provider.of<GetCharacterListUC>(context, listen: false),
-          houseName: 'House Stark',
+          houseName: houseName,
         ),
         child: Consumer<CharacterBloc>(
           builder: (context, bloc, _) => CharacterPage(

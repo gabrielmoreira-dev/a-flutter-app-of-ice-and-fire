@@ -85,10 +85,13 @@ class GeneralProvider extends StatelessWidget {
               ),
             )
             ..define(
-              RouteNameBuilder.characterListResource,
+              '${RouteNameBuilder.characterListResource}'
+              '/:${RouteNameBuilder.houseNameParameter}',
               transitionType: TransitionType.native,
               handler: Handler(
-                handlerFunc: (context, _) => CharacterPage.create(),
+                handlerFunc: (context, params) => CharacterPage.create(
+                  params[RouteNameBuilder.houseNameParameter]?.first,
+                ),
               ),
             ),
         ),

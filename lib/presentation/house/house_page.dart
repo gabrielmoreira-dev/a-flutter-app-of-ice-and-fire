@@ -1,3 +1,4 @@
+import 'package:aflutterappoficeandfire/presentation/common/route_name_builder.dart';
 import 'package:domain/use_case/get_house_list_uc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -50,8 +51,11 @@ class HousePage extends StatelessWidget {
                     ),
                   )
                   .toList(),
-              onTap: (name) {},
-              expand: false,
+              onTap: (houseName) => Navigator.pushNamed(
+                context,
+                RouteNameBuilder.characterList(houseName),
+              ),
+              expanded: false,
             ),
           ),
         ),

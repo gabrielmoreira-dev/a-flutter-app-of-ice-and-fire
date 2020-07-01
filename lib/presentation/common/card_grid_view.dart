@@ -8,13 +8,13 @@ class GotGridView extends StatelessWidget {
   GotGridView({
     @required this.itemList,
     @required this.onTap,
-    this.expand = true,
+    this.expanded = true,
   })  : assert(itemList != null),
         assert(onTap != null);
 
   final List<CardItemVM> itemList;
   final Function onTap;
-  final bool expand;
+  final bool expanded;
 
   @override
   Widget build(BuildContext context) => GridView(
@@ -30,7 +30,7 @@ class GotGridView extends StatelessWidget {
               (item) => _GotGridTile(
                 item: item,
                 onTap: onTap,
-                expand: expand,
+                expand: expanded,
               ),
             )
             .toList(),
