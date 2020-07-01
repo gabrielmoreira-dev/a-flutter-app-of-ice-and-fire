@@ -31,8 +31,8 @@ class HousePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: GotAppBar(),
+        appBar: GotAppBar(
+          title: 'An App of Ice And Fire',
         ),
         body: BlocBuilder<HouseBloc, HouseState>(
           bloc: bloc,

@@ -13,9 +13,12 @@ import 'character_models.dart';
 class CharacterPage extends StatelessWidget {
   CharacterPage({
     @required this.bloc,
-  }) : assert(bloc != null);
+    @required this.title,
+  })  : assert(bloc != null),
+        assert(title != null);
 
   final CharacterBloc bloc;
+  final String title;
 
   static Widget create(String houseName) => BlocProvider(
         create: (context) => CharacterBloc(
@@ -26,14 +29,15 @@ class CharacterPage extends StatelessWidget {
         child: Consumer<CharacterBloc>(
           builder: (context, bloc, _) => CharacterPage(
             bloc: bloc,
+            title: houseName,
           ),
         ),
       );
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: GotAppBar(),
+        appBar: GotAppBar(
+          title: title,
         ),
         body: BlocBuilder<CharacterBloc, CharacterState>(
           bloc: bloc,
