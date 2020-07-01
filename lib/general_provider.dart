@@ -1,6 +1,10 @@
+import 'package:aflutterappoficeandfire/presentation/character/list/character_page.dart';
+import 'package:aflutterappoficeandfire/presentation/common/route_name_builder.dart';
+import 'package:aflutterappoficeandfire/presentation/house/house_page.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/use_case/get_character_list_uc.dart';
 import 'package:domain/use_case/get_house_list_uc.dart';
+import 'package:fluro/fluro.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
@@ -70,6 +74,31 @@ class GeneralProvider extends StatelessWidget {
         ),
       ];
 
+  List<SingleChildWidget> _buildFluroProviders() => [
+        Provider<Router>(
+          create: (context) => Router()
+            ..define(
+              RouteNameBuilder.houseListResource,
+              transitionType: TransitionType.native,
+              handler: Handler(
+                handlerFunc: (context, _) => HousePage.create(),
+              ),
+            )
+            ..define(
+              RouteNameBuilder.characterListResource,
+              transitionType: TransitionType.native,
+              handler: Handler(
+                handlerFunc: (context, _) => CharacterPage.create(),
+              ),
+            ),
+        ),
+        ProxyProvider<Router, RouteFactory>(
+          update: (context, router, _) => (settings) => router
+              .matchRoute(context, settings.name, routeSettings: settings)
+              .route,
+        ),
+      ];
+
   @override
   Widget build(BuildContext context) => MultiProvider(
         providers: [
@@ -80,6 +109,7 @@ class GeneralProvider extends StatelessWidget {
           ..._buildCDSProviders(),
           ..._buildRepositoryProviders(),
           ..._buildUCProviders(),
+          ..._buildFluroProviders(),
         ],
         child: builder(context),
       );

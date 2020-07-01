@@ -1,14 +1,15 @@
+import 'package:aflutterappoficeandfire/presentation/common/route_name_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
 
 import 'data/cache/model/character_cm.dart';
 import 'data/cache/model/house_cm.dart';
 import 'general_provider.dart';
 import 'presentation/common/got_colors.dart';
-import 'presentation/house/house_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,6 +39,7 @@ class AnAppOfIceAndFire extends StatelessWidget {
         ),
         title: 'An App of Ice and Fire',
         debugShowCheckedModeBanner: false,
-        home: HousePage.create(),
+        initialRoute: RouteNameBuilder.houseListResource,
+        onGenerateRoute: Provider.of<RouteFactory>(context, listen: false),
       );
 }
