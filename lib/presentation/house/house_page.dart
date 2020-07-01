@@ -1,11 +1,13 @@
+import 'package:aflutterappoficeandfire/presentation/common/route_name_builder.dart';
 import 'package:domain/use_case/get_house_list_uc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
-import '../common/async_snapshot_response_view.dart';
 import '../common/card_grid_view.dart';
+import '../common/got_app_bar.dart';
+import '../common/response_view.dart';
 import 'house_bloc.dart';
 import 'house_models.dart';
 
@@ -29,11 +31,8 @@ class HousePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'An App of Ice And Fire',
-            style: TextStyle(fontSize: 16),
-          ),
+        appBar: GotAppBar(
+          title: 'An App of Ice And Fire',
         ),
         body: BlocBuilder<HouseBloc, HouseState>(
           bloc: bloc,
@@ -52,7 +51,11 @@ class HousePage extends StatelessWidget {
                     ),
                   )
                   .toList(),
-              onTap: (name) {},
+              onTap: (houseName) => Navigator.pushNamed(
+                context,
+                RouteNameBuilder.characterList(houseName),
+              ),
+              expanded: false,
             ),
           ),
         ),

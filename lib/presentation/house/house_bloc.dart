@@ -9,11 +9,7 @@ class HouseBloc extends Bloc<HouseEvent, HouseState> {
   HouseBloc({
     @required this.getHouseListUC,
   }) : assert(getHouseListUC != null) {
-    Stream.value(null).listen(
-      (_) => add(
-        OnInitEvent(),
-      ),
-    );
+    add(OnInitEvent());
   }
 
   final GetHouseListUC getHouseListUC;
@@ -31,14 +27,7 @@ class HouseBloc extends Bloc<HouseEvent, HouseState> {
       final houseList = await getHouseListUC.getFuture();
 
       yield Success(
-        houseList: houseList
-            .map(
-              (houseItem) => houseItem.toVM(),
-            )
-            .toList()
-              ..sort(
-                (a, b) => a.name.compareTo(b.name),
-              ),
+        houseList: houseList.toVM(),
       );
     } catch (_) {
       yield Error();

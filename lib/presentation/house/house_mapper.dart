@@ -8,3 +8,12 @@ extension HouseMapper on House {
         logoURL: logoURL,
       );
 }
+
+extension HouseListMapper on List<House> {
+  List<HouseVM> toVM() => map(
+        (houseItem) => houseItem.toVM(),
+      ).toList()
+        ..sort(
+          (a, b) => a.name.compareTo(b.name),
+        );
+}
