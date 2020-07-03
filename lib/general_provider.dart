@@ -1,7 +1,5 @@
-import 'package:aflutterappoficeandfire/presentation/character/list/character_page.dart';
-import 'package:aflutterappoficeandfire/presentation/common/route_name_builder.dart';
-import 'package:aflutterappoficeandfire/presentation/house/house_page.dart';
 import 'package:dio/dio.dart';
+import 'package:domain/use_case/get_character_details_uc.dart';
 import 'package:domain/use_case/get_character_list_uc.dart';
 import 'package:domain/use_case/get_house_list_uc.dart';
 import 'package:fluro/fluro.dart';
@@ -15,6 +13,9 @@ import 'data/remote/data_source/character_rds.dart';
 import 'data/remote/data_source/house_rds.dart';
 import 'data/repository/character_repository.dart';
 import 'data/repository/house_repository.dart';
+import 'presentation/character/list/character_page.dart';
+import 'presentation/common/route_name_builder.dart';
+import 'presentation/house/house_page.dart';
 
 class GeneralProvider extends StatelessWidget {
   GeneralProvider({
@@ -72,6 +73,11 @@ class GeneralProvider extends StatelessWidget {
             repository: repository,
           ),
         ),
+        ProxyProvider<CharacterRepository, GetCharacterDetailsUC>(
+          update: (context, repository, _) => GetCharacterDetailsUC(
+            repository: repository,
+          ),
+        )
       ];
 
   List<SingleChildWidget> _buildFluroProviders() => [
