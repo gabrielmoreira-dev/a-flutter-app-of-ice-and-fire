@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
 import '../infrastructure/url_builder.dart';
+import '../model/character_details_rm.dart';
 import '../model/character_rm.dart';
 
 class CharacterRDS {
@@ -21,4 +22,9 @@ class CharacterRDS {
             .toList()
             .cast<CharacterRM>(),
       );
+
+  Future<CharacterDetailsRM> getCharacterDetails(String name) =>
+      dio.get(UrlBuilder.character(name)).then(
+            (response) => CharacterDetailsRM.fromJson(response.data),
+          );
 }
