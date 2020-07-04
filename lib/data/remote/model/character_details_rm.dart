@@ -22,7 +22,7 @@ class CharacterDetailsRM {
   @JsonKey()
   final String image;
   @JsonKey()
-  final String culture;
+  final List<String> culture;
   @JsonKey()
   final List<String> titles;
   @JsonKey()

@@ -1,3 +1,4 @@
+import 'package:aflutterappoficeandfire/presentation/common/empty_data_image.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -77,7 +78,7 @@ class _GotGridTile extends StatelessWidget {
                             expand ? Alignment.topCenter : Alignment.center,
                         placeholder: (context, _) =>
                             CircularProgressIndicator(),
-                        errorWidget: (context, _, __) => ImageError(),
+                        errorWidget: (context, _, __) => EmptyDataImage(),
                       ),
                     ),
                   ),
@@ -115,12 +116,4 @@ class CardItemVM {
 
   final String name;
   final String image;
-}
-
-class ImageError extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) => Icon(
-        Icons.image,
-        color: Colors.white,
-      );
 }

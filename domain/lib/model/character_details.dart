@@ -18,7 +18,7 @@ class CharacterDetails extends Character {
           image: image,
         );
 
-  final String culture;
+  final List<String> culture;
   final List<String> titles;
   final List<String> allegiance;
 }

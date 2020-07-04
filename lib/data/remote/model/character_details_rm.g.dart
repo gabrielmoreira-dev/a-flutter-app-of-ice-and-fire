@@ -10,7 +10,7 @@ CharacterDetailsRM _$CharacterDetailsRMFromJson(Map<String, dynamic> json) {
   return CharacterDetailsRM(
     name: json['name'] as String,
     image: json['image'] as String,
-    culture: json['culture'] as String,
+    culture: (json['culture'] as List)?.map((e) => e as String)?.toList(),
     titles: (json['titles'] as List)?.map((e) => e as String)?.toList(),
     allegiance: (json['allegiance'] as List)?.map((e) => e as String)?.toList(),
   );

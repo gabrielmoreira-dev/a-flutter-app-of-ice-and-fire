@@ -22,7 +22,7 @@ class CharacterDetailsCM {
   @HiveField(1)
   final String image;
   @HiveField(2)
-  final String culture;
+  final List<String> culture;
   @HiveField(3)
   final List<String> titles;
   @HiveField(4)

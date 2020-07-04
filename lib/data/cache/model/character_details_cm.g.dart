@@ -19,7 +19,7 @@ class CharacterDetailsCMAdapter extends TypeAdapter<CharacterDetailsCM> {
     return CharacterDetailsCM(
       name: fields[0] as String,
       image: fields[1] as String,
-      culture: fields[2] as String,
+      culture: (fields[2] as List)?.cast<String>(),
       titles: (fields[3] as List)?.cast<String>(),
       allegiance: (fields[4] as List)?.cast<String>(),
     );

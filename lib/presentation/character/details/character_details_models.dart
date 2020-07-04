@@ -29,7 +29,7 @@ class CharacterDetailsVM {
 
   final String name;
   final String image;
-  final String culture;
+  final List<String> culture;
   final List<String> titles;
   final List<String> allegiance;
 }
