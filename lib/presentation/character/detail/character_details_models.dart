@@ -2,7 +2,13 @@ import 'package:flutter/foundation.dart';
 
 abstract class CharacterDetailsState {}
 
-class Success extends CharacterDetailsState {}
+class Success extends CharacterDetailsState {
+  Success({
+    @required this.characterDetails,
+  }) : assert(characterDetails != null);
+
+  final CharacterDetailsVM characterDetails;
+}
 
 class Loading extends CharacterDetailsState {}
 
