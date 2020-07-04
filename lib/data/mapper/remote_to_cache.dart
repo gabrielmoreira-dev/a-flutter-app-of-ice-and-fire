@@ -44,7 +44,7 @@ extension CharacterDetailsMapper on CharacterDetailsRM {
   CharacterDetailsCM toCM() => CharacterDetailsCM(
         name: name,
         image: image,
-        allegiance: allegiance,
+        allegiances: allegiances,
         culture: culture,
         titles: titles,
       );

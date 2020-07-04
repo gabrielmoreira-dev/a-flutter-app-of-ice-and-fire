@@ -10,12 +10,12 @@ class CharacterDetailsRM {
     @required this.image,
     @required this.culture,
     @required this.titles,
-    @required this.allegiance,
+    this.allegiances,
   })  : assert(name != null),
         assert(image != null),
         assert(culture != null),
         assert(titles != null),
-        assert(allegiance != null);
+        assert(allegiances != null);
 
   @JsonKey()
   final String name;
@@ -26,7 +26,7 @@ class CharacterDetailsRM {
   @JsonKey()
   final List<String> titles;
   @JsonKey()
-  final List<String> allegiance;
+  final List<String> allegiances;
 
   Map<String, dynamic> toJson() => _$CharacterDetailsRMToJson(this);
   static const fromJson = _$CharacterDetailsRMFromJson;

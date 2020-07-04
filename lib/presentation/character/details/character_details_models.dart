@@ -20,12 +20,11 @@ class CharacterDetailsVM {
     @required this.image,
     @required this.culture,
     @required this.titles,
-    @required this.allegiance,
+    this.allegiance,
   })  : assert(name != null),
         assert(image != null),
         assert(culture != null),
-        assert(titles != null),
-        assert(allegiance != null);
+        assert(titles != null);
 
   final String name;
   final String image;

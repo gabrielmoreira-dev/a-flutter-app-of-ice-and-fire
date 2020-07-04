@@ -3,14 +3,13 @@ import 'package:meta/meta.dart';
 
 class CharacterDetails extends Character {
   CharacterDetails({
-    @required this.culture,
-    @required this.titles,
-    @required this.allegiance,
     @required String name,
     @required String image,
+    @required this.culture,
+    @required this.titles,
+    this.allegiances,
   })  : assert(culture != null),
         assert(titles != null),
-        assert(allegiance != null),
         assert(name != null),
         assert(image != null),
         super(
@@ -20,5 +19,5 @@ class CharacterDetails extends Character {
 
   final List<String> culture;
   final List<String> titles;
-  final List<String> allegiance;
+  final List<String> allegiances;
 }

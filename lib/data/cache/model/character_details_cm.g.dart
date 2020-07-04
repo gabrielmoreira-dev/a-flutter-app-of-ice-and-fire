@@ -21,7 +21,7 @@ class CharacterDetailsCMAdapter extends TypeAdapter<CharacterDetailsCM> {
       image: fields[1] as String,
       culture: (fields[2] as List)?.cast<String>(),
       titles: (fields[3] as List)?.cast<String>(),
-      allegiance: (fields[4] as List)?.cast<String>(),
+      allegiances: (fields[4] as List)?.cast<String>(),
     );
   }
 
@@ -38,6 +38,6 @@ class CharacterDetailsCMAdapter extends TypeAdapter<CharacterDetailsCM> {
       ..writeByte(3)
       ..write(obj.titles)
       ..writeByte(4)
-      ..write(obj.allegiance);
+      ..write(obj.allegiances);
   }
 }

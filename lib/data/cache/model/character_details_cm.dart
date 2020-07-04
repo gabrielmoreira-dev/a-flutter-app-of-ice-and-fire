@@ -10,12 +10,11 @@ class CharacterDetailsCM {
     @required this.image,
     @required this.culture,
     @required this.titles,
-    @required this.allegiance,
+    this.allegiances,
   })  : assert(name != null),
         assert(image != null),
         assert(culture != null),
-        assert(titles != null),
-        assert(allegiance != null);
+        assert(titles != null);
 
   @HiveField(0)
   final String name;
@@ -26,5 +25,5 @@ class CharacterDetailsCM {
   @HiveField(3)
   final List<String> titles;
   @HiveField(4)
-  final List<String> allegiance;
+  final List<String> allegiances;
 }

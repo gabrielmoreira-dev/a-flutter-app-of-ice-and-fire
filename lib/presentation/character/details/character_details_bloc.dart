@@ -31,7 +31,8 @@ class CharacterDetailsBloc extends Bloc<Event, CharacterDetailsState> {
       yield Success(
         characterDetails: characterDetails.toVM(),
       );
-    } catch (_) {
+    } catch (e) {
+      print(e);
       yield Error();
     }
   }

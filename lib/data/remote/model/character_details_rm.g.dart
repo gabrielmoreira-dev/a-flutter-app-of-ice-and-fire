@@ -12,7 +12,8 @@ CharacterDetailsRM _$CharacterDetailsRMFromJson(Map<String, dynamic> json) {
     image: json['image'] as String,
     culture: (json['culture'] as List)?.map((e) => e as String)?.toList(),
     titles: (json['titles'] as List)?.map((e) => e as String)?.toList(),
-    allegiance: (json['allegiance'] as List)?.map((e) => e as String)?.toList(),
+    allegiances:
+        (json['allegiances'] as List)?.map((e) => e as String)?.toList(),
   );
 }
 
@@ -22,5 +23,5 @@ Map<String, dynamic> _$CharacterDetailsRMToJson(CharacterDetailsRM instance) =>
       'image': instance.image,
       'culture': instance.culture,
       'titles': instance.titles,
-      'allegiance': instance.allegiance,
+      'allegiances': instance.allegiances,
     };

@@ -8,6 +8,6 @@ extension CharacterDetailsMapper on CharacterDetails {
         image: image,
         culture: culture,
         titles: titles,
-        allegiance: allegiance,
+        allegiance: allegiances,
       );
 }

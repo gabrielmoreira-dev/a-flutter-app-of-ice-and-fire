@@ -38,6 +38,6 @@ extension CharacterDetailsCMMapper on CharacterDetailsCM {
         image: image,
         culture: culture,
         titles: titles,
-        allegiance: allegiance,
+        allegiances: allegiances,
       );
 }
