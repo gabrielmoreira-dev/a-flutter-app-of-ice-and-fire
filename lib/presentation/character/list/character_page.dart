@@ -1,4 +1,3 @@
-import 'package:aflutterappoficeandfire/presentation/common/route_name_builder.dart';
 import 'package:domain/use_case/get_character_list_uc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -8,6 +7,7 @@ import 'package:provider/provider.dart';
 import '../../common/card_grid_view.dart';
 import '../../common/got_app_bar.dart';
 import '../../common/response_view.dart';
+import '../../common/route_name_builder.dart';
 import '../../common/view_utils.dart';
 import 'character_bloc.dart';
 import 'character_models.dart';
