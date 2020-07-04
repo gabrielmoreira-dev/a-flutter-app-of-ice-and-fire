@@ -1,4 +1,3 @@
-import 'package:aflutterappoficeandfire/presentation/common/route_name_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -7,9 +6,11 @@ import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'data/cache/model/character_cm.dart';
+import 'data/cache/model/character_details_cm.dart';
 import 'data/cache/model/house_cm.dart';
 import 'general_provider.dart';
 import 'presentation/common/got_colors.dart';
+import 'presentation/common/route_name_builder.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +19,8 @@ void main() async {
   Hive
     ..init(appDocDir.path)
     ..registerAdapter(HouseCMAdapter())
-    ..registerAdapter(CharacterCMAdapter());
+    ..registerAdapter(CharacterCMAdapter())
+    ..registerAdapter(CharacterDetailsCMAdapter());
 
   runApp(
     GeneralProvider(

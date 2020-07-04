@@ -14,12 +14,6 @@ class Loading extends HouseState {}
 
 class Error extends HouseState {}
 
-abstract class HouseEvent {}
-
-class OnInitEvent extends HouseEvent {}
-
-class OnTryAgainEvent extends HouseEvent {}
-
 class HouseVM {
   HouseVM({
     @required this.name,

@@ -1,13 +1,14 @@
-import 'package:aflutterappoficeandfire/presentation/common/route_name_builder.dart';
 import 'package:domain/use_case/get_house_list_uc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
-import '../common/card_grid_view.dart';
 import '../common/got_app_bar.dart';
+import '../common/got_grid_view.dart';
 import '../common/response_view.dart';
+import '../common/route_name_builder.dart';
+import '../common/view_utils.dart';
 import 'house_bloc.dart';
 import 'house_models.dart';
 

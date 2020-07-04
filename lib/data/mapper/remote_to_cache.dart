@@ -1,5 +1,8 @@
+import 'package:aflutterappoficeandfire/data/cache/model/character_details_cm.dart';
+
 import '../cache/model/character_cm.dart';
 import '../cache/model/house_cm.dart';
+import '../remote/model/character_details_rm.dart';
 import '../remote/model/character_rm.dart';
 import '../remote/model/house_rm.dart';
 
@@ -35,4 +38,14 @@ extension CharacterListRMMapper on List<CharacterRM> {
             (characterItem) => characterItem.image != null,
           )
           .toList();
+}
+
+extension CharacterDetailsMapper on CharacterDetailsRM {
+  CharacterDetailsCM toCM() => CharacterDetailsCM(
+        name: name,
+        image: image,
+        allegiances: allegiances,
+        culture: culture,
+        titles: titles,
+      );
 }

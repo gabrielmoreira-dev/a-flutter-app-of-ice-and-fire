@@ -1,5 +1,6 @@
 import 'package:domain/data_repository/character_data_repository.dart';
 import 'package:domain/model/character.dart';
+import 'package:domain/model/character_details.dart';
 import 'package:flutter/foundation.dart';
 
 import '../cache/data_source/character_cds.dart';
@@ -30,8 +31,26 @@ class CharacterRepository extends CharacterDataRepository {
                 ),
       )
       .catchError(
-        (e) => characterCDS.getCharacterList(houseName).then(
+        (_) => characterCDS.getCharacterList(houseName).then(
               (characterListCM) => characterListCM.toDM(),
+            ),
+      );
+
+  @override
+  Future<CharacterDetails> getCharacterDetails(String name) => characterRDS
+      .getCharacterDetails(name)
+      .then(
+        (characterDetailsRM) => characterDetailsRM.toCM(),
+      )
+      .then(
+        (characterDetailsCM) =>
+            characterCDS.upsertCharacterDetails(characterDetailsCM).then(
+                  (_) => characterDetailsCM.toDM(),
+                ),
+      )
+      .catchError(
+        (_) => characterCDS.getCharacterDetails(name).then(
+              (characterDetailsCM) => characterDetailsCM.toDM(),
             ),
       );
 }
