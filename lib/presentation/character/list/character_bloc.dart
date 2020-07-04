@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:domain/model/character.dart';
 import 'package:domain/use_case/get_character_list_uc.dart';
 import 'package:flutter/foundation.dart';
 
@@ -26,11 +27,7 @@ class CharacterBloc extends Bloc<Event, CharacterState> {
     yield Loading();
 
     try {
-      final characterList = await getCharacterListUC.getFuture(
-        params: GetCharacterListUCParams(
-          houseName: houseName,
-        ),
-      );
+      final characterList = await fetchCharacterList();
 
       yield Success(
         characterList: characterList.toVM(),
@@ -39,4 +36,10 @@ class CharacterBloc extends Bloc<Event, CharacterState> {
       yield Error();
     }
   }
+
+  Future<List<Character>> fetchCharacterList() => getCharacterListUC.getFuture(
+        params: GetCharacterListUCParams(
+          houseName: houseName,
+        ),
+      );
 }

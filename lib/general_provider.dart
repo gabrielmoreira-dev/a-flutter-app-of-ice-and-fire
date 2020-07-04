@@ -1,4 +1,3 @@
-import 'package:aflutterappoficeandfire/presentation/character/detail/character_details_page.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/use_case/get_character_details_uc.dart';
 import 'package:domain/use_case/get_character_list_uc.dart';
@@ -14,6 +13,7 @@ import 'data/remote/data_source/character_rds.dart';
 import 'data/remote/data_source/house_rds.dart';
 import 'data/repository/character_repository.dart';
 import 'data/repository/house_repository.dart';
+import 'presentation/character/details/character_details_page.dart';
 import 'presentation/character/list/character_page.dart';
 import 'presentation/common/route_name_builder.dart';
 import 'presentation/house/house_page.dart';

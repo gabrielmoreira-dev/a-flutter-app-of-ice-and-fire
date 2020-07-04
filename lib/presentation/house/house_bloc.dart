@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:domain/model/house.dart';
 import 'package:domain/use_case/get_house_list_uc.dart';
 import 'package:flutter/foundation.dart';
 
@@ -25,7 +26,7 @@ class HouseBloc extends Bloc<Event, HouseState> {
     yield Loading();
 
     try {
-      final houseList = await getHouseListUC.getFuture();
+      final houseList = await fetchHouseList();
 
       yield Success(
         houseList: houseList.toVM(),
@@ -34,4 +35,6 @@ class HouseBloc extends Bloc<Event, HouseState> {
       yield Error();
     }
   }
+
+  Future<List<House>> fetchHouseList() => getHouseListUC.getFuture();
 }

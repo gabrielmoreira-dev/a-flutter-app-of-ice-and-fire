@@ -1,3 +1,4 @@
+import 'package:domain/model/character_details.dart';
 import 'package:domain/use_case/get_character_details_uc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,16 +27,19 @@ class CharacterDetailsBloc extends Bloc<Event, CharacterDetailsState> {
     yield Loading();
 
     try {
-      final characterDetails = await getCharacterDetailsUC.getFuture(
+      final characterDetails = await fetchCharacterDetails();
+      yield Success(
+        characterDetails: characterDetails.toVM(),
+      );
+    } catch (_) {
+      yield Error();
+    }
+  }
+
+  Future<CharacterDetails> fetchCharacterDetails() =>
+      getCharacterDetailsUC.getFuture(
         params: GetCharacterDetailsUCParams(
           name: name,
         ),
       );
-      yield Success(
-        characterDetails: characterDetails.toVM(),
-      );
-    } catch (e) {
-      yield Error();
-    }
-  }
 }
