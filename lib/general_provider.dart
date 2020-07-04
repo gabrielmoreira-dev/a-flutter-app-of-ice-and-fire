@@ -1,3 +1,4 @@
+import 'package:aflutterappoficeandfire/presentation/character/detail/character_details_page.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/use_case/get_character_details_uc.dart';
 import 'package:domain/use_case/get_character_list_uc.dart';
@@ -97,6 +98,16 @@ class GeneralProvider extends StatelessWidget {
               handler: Handler(
                 handlerFunc: (context, params) => CharacterPage.create(
                   params[RouteNameBuilder.houseNameParameter]?.first,
+                ),
+              ),
+            )
+            ..define(
+              '${RouteNameBuilder.characterDetailsResource}'
+              '/:${RouteNameBuilder.characterNameParameter}',
+              transitionType: TransitionType.nativeModal,
+              handler: Handler(
+                handlerFunc: (context, params) => CharacterDetailsPage.create(
+                  params[RouteNameBuilder.characterNameParameter]?.first,
                 ),
               ),
             ),

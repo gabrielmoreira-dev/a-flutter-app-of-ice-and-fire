@@ -1,3 +1,4 @@
+import 'package:aflutterappoficeandfire/presentation/common/route_name_builder.dart';
 import 'package:domain/use_case/get_character_list_uc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -57,7 +58,10 @@ class CharacterPage extends StatelessWidget {
                     ),
                   )
                   .toList(),
-              onTap: (name) {},
+              onTap: (name) => Navigator.pushNamed(
+                context,
+                RouteNameBuilder.characterDetails(name),
+              ),
             ),
           ),
         ),
