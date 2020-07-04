@@ -14,12 +14,6 @@ class Loading extends CharacterState {}
 
 class Error extends CharacterState {}
 
-abstract class CharacterEvent {}
-
-class OnInitEvent extends CharacterEvent {}
-
-class OnTryAgainEvent extends CharacterEvent {}
-
 class CharacterVM {
   CharacterVM({
     @required this.name,
