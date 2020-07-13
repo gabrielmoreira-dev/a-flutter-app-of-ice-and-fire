@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "485048437060",
+    "firebase_url": "https://an-app-of-ice-and-fire-1ff14.firebaseio.com",
+    "project_id": "an-app-of-ice-and-fire-1ff14",
+    "storage_bucket": "an-app-of-ice-and-fire-1ff14.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:485048437060:android:5b027aca214833e824ef11",
+        "android_client_info": {
+          "package_name": "com.example.aflutterappoficeandfire"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "485048437060-9unoufgg72l39j4hqfrdpk5ea6bsge2h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIKzVbHxK1dWjkTmX84vJP7hb99mbsgvw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "485048437060-9unoufgg72l39j4hqfrdpk5ea6bsge2h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
