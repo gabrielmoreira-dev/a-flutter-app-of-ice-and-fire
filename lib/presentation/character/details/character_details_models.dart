@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
 abstract class CharacterDetailsState {}
@@ -14,7 +15,7 @@ class Loading extends CharacterDetailsState {}
 
 class Error extends CharacterDetailsState {}
 
-class CharacterDetailsVM {
+class CharacterDetailsVM extends Equatable {
   CharacterDetailsVM({
     @required this.name,
     @required this.image,
@@ -31,4 +32,7 @@ class CharacterDetailsVM {
   final List<String> culture;
   final List<String> titles;
   final List<String> allegiance;
+
+  @override
+  List<Object> get props => [name, image, culture, titles, allegiance];
 }
