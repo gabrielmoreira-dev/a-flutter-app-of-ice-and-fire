@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
 abstract class HouseState {}
@@ -14,7 +15,7 @@ class Loading extends HouseState {}
 
 class Error extends HouseState {}
 
-class HouseVM {
+class HouseVM extends Equatable {
   HouseVM({
     @required this.name,
     @required this.logoURL,
@@ -23,10 +24,7 @@ class HouseVM {
 
   final String name;
   final String logoURL;
+
+  @override
+  List<Object> get props => [name, logoURL];
 }
-
-abstract class HouseEvent {}
-
-class OnTryAgainEvent extends HouseEvent {}
-
-class OnInitEvent extends HouseEvent {}
