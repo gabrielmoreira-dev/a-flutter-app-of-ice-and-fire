@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
 abstract class CharacterState {}
@@ -14,7 +15,7 @@ class Loading extends CharacterState {}
 
 class Error extends CharacterState {}
 
-class CharacterVM {
+class CharacterVM extends Equatable {
   CharacterVM({
     @required this.name,
     @required this.image,
@@ -23,4 +24,7 @@ class CharacterVM {
 
   final String name;
   final String image;
+
+  @override
+  List<Object> get props => [name, image];
 }
