@@ -10,26 +10,23 @@ void main() {
   GetCharacterListUC uc;
   CharacterDataRepository repository;
 
-  final houseStark = 'House Stark';
-  final aryaStark = 'Arya Stark';
-  final branStark = 'Bran Stark';
-  final houseLannister = 'House Lannister';
-  final jaimeLannister = 'Jaime Lannister';
+  const houseStark = 'House Stark';
+  const houseLannister = 'House Lannister';
   final houseGreyjoy = 'House Greyjoy';
 
   final characterList = [
     Character(
-      name: aryaStark,
+      name: 'Arya Stark',
       house: houseStark,
       image: 'arya.png',
     ),
     Character(
-      name: branStark,
+      name: 'Bran Stark',
       house: houseStark,
       image: 'bran.png',
     ),
     Character(
-      name: jaimeLannister,
+      name: 'Jaime Lannister',
       house: houseLannister,
       image: 'jaime.png',
     ),
@@ -42,84 +39,107 @@ void main() {
     );
   });
 
-  test(
-    'Should return a list containing the House Stark characters',
-    () async {
-      when(
-        repository.getCharacterList(any),
-      ).thenAnswer(
-        (invocation) async => characterList
-            .where(
-              (item) => item.name == invocation.positionalArguments[0],
-            )
-            .toList(),
-      );
+  group('Get character list', () {
+    test(
+      'Should return a list containing the House Stark characters',
+      () async {
+        when(
+          repository.getCharacterList(any),
+        ).thenAnswer(
+          (invocation) async => characterList
+              .where(
+                (item) => item.name == invocation.positionalArguments[0],
+              )
+              .toList(),
+        );
 
-      final result = await uc.getFuture(
-        params: GetCharacterListUCParams(houseName: houseStark),
-      );
+        expect(
+          await uc.getFuture(
+            params: GetCharacterListUCParams(houseName: houseStark),
+          ),
+          characterList.where((element) => element.name == houseStark).toList(),
+        );
+        verify(repository.getCharacterList(houseStark));
+        verifyNoMoreInteractions(repository);
+      },
+    );
 
-      expect(
-        result,
-        characterList.where((element) => element.name == houseStark).toList(),
-      );
-      verify(repository.getCharacterList(houseStark));
-      verifyNoMoreInteractions(repository);
-    },
-  );
+    test(
+      'Should return a list containing the House Lannister characters',
+      () async {
+        when(
+          repository.getCharacterList(any),
+        ).thenAnswer(
+          (invocation) async => characterList
+              .where(
+                (item) => item.name == invocation.positionalArguments[0],
+              )
+              .toList(),
+        );
 
-  test(
-    'Should return a list containing the House Lannister characters',
-    () async {
-      when(
-        repository.getCharacterList(any),
-      ).thenAnswer(
-        (invocation) async => characterList
-            .where(
-              (item) => item.name == invocation.positionalArguments[0],
-            )
-            .toList(),
-      );
+        expect(
+          await uc.getFuture(
+            params: GetCharacterListUCParams(
+              houseName: houseLannister,
+            ),
+          ),
+          characterList
+              .where((element) => element.name == houseLannister)
+              .toList(),
+        );
+        verify(repository.getCharacterList(houseLannister));
+        verifyNoMoreInteractions(repository);
+      },
+    );
 
-      final result = await uc.getFuture(
-        params: GetCharacterListUCParams(
-          houseName: houseLannister,
-        ),
-      );
+    test(
+      'Should return a empty list',
+      () async {
+        when(
+          repository.getCharacterList(any),
+        ).thenAnswer(
+          (invocation) async => characterList
+              .where(
+                (item) => item.name == invocation.positionalArguments[0],
+              )
+              .toList(),
+        );
 
-      expect(
-        result,
-        characterList
-            .where((element) => element.name == houseLannister)
-            .toList(),
-      );
-      verify(repository.getCharacterList(houseLannister));
-      verifyNoMoreInteractions(repository);
-    },
-  );
+        expect(
+          await uc.getFuture(
+            params: GetCharacterListUCParams(
+              houseName: houseGreyjoy,
+            ),
+          ),
+          [],
+        );
+        verify(repository.getCharacterList(houseGreyjoy));
+        verifyNoMoreInteractions(repository);
+      },
+    );
+  });
 
-  test(
-    'Should return a empty list',
-    () async {
-      when(
-        repository.getCharacterList(any),
-      ).thenAnswer(
-        (invocation) async => characterList
-            .where(
-              (item) => item.name == invocation.positionalArguments[0],
-            )
-            .toList(),
-      );
+  group('Get character list exceptions', () {
+    test(
+      'Should throw an error when calling getCharacterList method',
+      () {
+        when(
+          repository.getCharacterList(any),
+        ).thenThrow(
+          Exception(),
+        );
 
-      final result = await uc.getFuture(
-        params: GetCharacterListUCParams(
-          houseName: houseGreyjoy,
-        ),
-      );
-
-      expect(result, []);
-      verify(repository.getCharacterList(houseGreyjoy));
-      verifyNoMoreInteractions(repository);
-    },
-  );
+        expect(
+          () async => await uc.getFuture(
+            params: GetCharacterListUCParams(
+              houseName: houseGreyjoy,
+            ),
+          ),
+          throwsException,
+        );
+        verify(repository.getCharacterList(houseGreyjoy));
+        verifyNoMoreInteractions(repository);
+      },
+    );
+  });
 }
