@@ -21,29 +21,24 @@ void main() {
     ),
   ];
 
-  setUp(
-    () {
-      repository = HouseRepositoryMock();
-      uc = GetHouseListUC(
-        repository: repository,
-      );
-    },
-  );
+  setUp(() {
+    repository = HouseRepositoryMock();
+    uc = GetHouseListUC(
+      repository: repository,
+    );
+  });
 
-  test(
-    'Should return a house list',
-    () async {
-      when(
-        repository.getHouseList(),
-      ).thenAnswer(
-        (_) async => houseList,
-      );
+  test('Should return a house list', () async {
+    when(
+      repository.getHouseList(),
+    ).thenAnswer(
+      (_) async => houseList,
+    );
 
-      final result = await uc.getFuture();
+    final result = await uc.getFuture();
 
-      expect(result, houseList);
-      verify(repository.getHouseList());
-      verifyNoMoreInteractions(repository);
-    },
-  );
+    expect(result, houseList);
+    verify(repository.getHouseList());
+    verifyNoMoreInteractions(repository);
+  });
 }
